@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mistress Mariana - Cyberpunk Profile</title>
+    <link rel="stylesheet" href="mistress.css">
+</head>
+<body>
+    <div class="matrix-background">
+        <div class="matrix-rain"></div>
+    </div>
+    
+    <div class="profile-container">
+        <div class="header">
+            <div class="alias-name">
+                <span>M</span><span>i</span><span>s</span><span>t</span><span>r</span><span>e</span><span>s</span><span>s</span>
+                <span>&nbsp;</span>
+                <span>M</span><span>a</span><span>r</span><span>i</span><span>a</span><span>n</span><span>a</span>
+                <span class="cursor">_</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="character-image">
+                <img src="https://ist8-3.filesor.com/pimpandhost.com/2/6/8/2/268217/j/Z/8/P/jZ8Pf/pablomains.png" alt="Mistress Mariana" class="main-image">
+                <div class="matrix-overlay">
+                    <img src="https://ist8-3.filesor.com/pimpandhost.com/2/6/8/2/268217/j/Z/8/P/jZ8Pf/pablomains.png" alt="Matrix Overlay">
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="status-bar">
+                    <div class="status-indicator online">ONLINE</div>
+                    <div class="status-ping">Ping: 23ms</div>
+                </div>
+
+                <div class="view-counter">
+                    <span class="counter-label">Profile Views:</span>
+                    <span class="counter-value">1,337</span>
+                </div>
+
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <div class="tab-selector active" data-tab="stats">STATS</div>
+                        <div class="tab-selector" data-tab="bio">BIO</div>
+                        <div class="tab-selector" data-tab="scenes">SCENES</div>
+                        <div class="tab-selector" data-tab="gallery">GALLERY</div>
+                    </div>
+
+                    <div class="tabs-content">
+                        <div class="tab-content active" id="stats">
+                            <div class="stat-row"><span>Age:</span> Timeless</div>
+                            <div class="stat-row"><span>Height:</span> 5'8"</div>
+                            <div class="stat-row"><span>Build:</span> Athletic</div>
+                            <div class="stat-row"><span>Role:</span> Dominant</div>
+                            <div class="stat-row"><span>Experience:</span> Advanced</div>
+                            <div class="stat-row"><span>Location:</span> Cyberspace</div>
+                            <div class="stat-row"><span>Languages:</span> EN, Binary</div>
+                            <div class="stat-row"><span>Availability:</span> By Appointment</div>
+                        </div>
+
+                        <div class="tab-content" id="bio">
+                            <div class="case-content">
+                                Welcome to my digital domain. I am <span class="highlight">Mistress Mariana</span>, your guide through the depths of cybernetic submission. My expertise lies in crafting immersive experiences that blur the lines between reality and digital fantasy.
+                                <br><br>
+                                I specialize in <span class="highlight">mental domination</span>, <span class="highlight">protocol training</span>, and <span class="highlight">digital bondage</span>. Each session is a carefully orchestrated symphony of control, designed to push your limits while keeping you safely within my digital embrace.
+                                <br><br>
+                                View my complete list of interests on my <a href="#" class="kinks-link">fetish profile</a>.
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="scenes">
+                            <div class="scene-content">
+                                <div class="scene-idea">
+                                    <div class="scene-title">
+                                        Neural Reprogramming <span class="dropdown-arrow">▼</span>
+                                    </div>
+                                    <div class="scene-description">
+                                        A deep dive into the mind, where reality becomes malleable under my control. Perfect for those seeking mental transformation.
+                                    </div>
+                                </div>
+
+                                <div class="scene-idea">
+                                    <div class="scene-title">
+                                        Digital Bondage <span class="dropdown-arrow">▼</span>
+                                    </div>
+                                    <div class="scene-description">
+                                        Experience restraint in the digital realm, where every pixel serves to enhance your submission.
+                                    </div>
+                                </div>
+
+                                <div class="scene-idea">
+                                    <div class="scene-title">
+                                        Protocol Training <span class="dropdown-arrow">▼</span>
+                                    </div>
+                                    <div class="scene-description">
+                                        Learn to serve in the digital age, with strict protocols and exacting standards.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="gallery">
+                            <div class="gallery-grid">
+                                <div class="gallery-item">
+                                    <div class="gallery-name">Neural Net 01</div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-name">Cyber Suite</div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-name">Digital Dungeon</div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-name">Matrix Chamber</div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-name">Virtual Reality</div>
+                                </div>
+                                <div class="gallery-item">
+                                    <div class="gallery-name">Binary Bonds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-selector').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab-selector').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Matrix rain animation
+        function createMatrixRain() {
+            const matrixRain = document.querySelector('.matrix-rain');
+            const characters = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+            
+            for (let i = 0; i < 40; i++) {
+                const column = document.createElement('div');
+                column.className = 'rain-column';
+                
+                let content = '';
+                for (let j = 0; j < 20; j++) {
+                    if (Math.random() < 0.1) {
+                        content += `<span class="bright-char">${characters[Math.floor(Math.random() * characters.length)]}</span>`;
+                    } else {
+                        content += characters[Math.floor(Math.random() * characters.length)];
+                    }
+                    content += '<br>';
+                }
+                
+                column.innerHTML = content;
+                matrixRain.appendChild(column);
+            }
+        }
+
+        createMatrixRain();
+
+        setInterval(() => {
+            document.querySelectorAll('.rain-column').forEach(column => {
+                let content = '';
+                for (let j = 0; j < 20; j++) {
+                    if (Math.random() < 0.1) {
+                        content += `<span class="bright-char">${characters[Math.floor(Math.random() * characters.length)]}</span>`;
+                    } else {
+                        content += characters[Math.floor(Math.random() * characters.length)];
+                    }
+                    content += '<br>';
+                }
+                column.innerHTML = content;
+            });
+        }, 5000);
+    </script>
+</body>
+</html> 
