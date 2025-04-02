@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mommy's Profile</title>
+    <link rel="stylesheet" href="mommy.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="content">
+            <div class="character-image">
+                <img src="path_to_mommy_image.jpg" alt="Mommy">
+            </div>
+            <div class="info-section">
+                <div class="subject-code">SUBJECT: MOMMY-001</div>
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <div class="tab-selector active" data-tab="stats">Stats</div>
+                        <div class="tab-selector" data-tab="gallery">Gallery</div>
+                        <div class="tab-selector" data-tab="scene-ideas">Scene Ideas</div>
+                    </div>
+                    <div class="tabs-content">
+                        <div class="tab-content active" id="stats">
+                            <div class="stat-row"><span>Name:</span> Mommy</div>
+                            <div class="stat-row"><span>Age:</span> 35</div>
+                            <div class="stat-row"><span>Height:</span> 5'8"</div>
+                            <div class="stat-row"><span>Build:</span> Curvy</div>
+                            <div class="stat-row"><span>Hair:</span> Brunette</div>
+                            <div class="stat-row"><span>Eyes:</span> Hazel</div>
+                            <div class="stat-row"><span>Role:</span> Nurturing Dominant</div>
+                            <div class="stat-row"><span>Style:</span> Gentle but Firm</div>
+                            <div class="stat-row"><span>Experience:</span> Extensive</div>
+                        </div>
+                        <div class="tab-content" id="gallery">
+                            <div class="gallery-grid">
+                                <!-- Gallery items will be added here -->
+                            </div>
+                        </div>
+                        <div class="tab-content" id="scene-ideas">
+                            <div class="scene-content">
+                                <div class="scene-idea">
+                                    <div class="scene-title">
+                                        Nurturing Aftercare
+                                        <span class="dropdown-arrow">▼</span>
+                                    </div>
+                                    <div class="scene-description">
+                                        A gentle aftercare session with soft touches, warm embraces, and soothing words.
+                                    </div>
+                                </div>
+                                <div class="scene-idea">
+                                    <div class="scene-title">
+                                        Discipline and Reward
+                                        <span class="dropdown-arrow">▼</span>
+                                    </div>
+                                    <div class="scene-description">
+                                        Firm but loving discipline followed by praise and rewards for good behavior.
+                                    </div>
+                                </div>
+                                <div class="scene-idea">
+                                    <div class="scene-title">
+                                        Comfort and Care
+                                        <span class="dropdown-arrow">▼</span>
+                                    </div>
+                                    <div class="scene-description">
+                                        A nurturing session focused on emotional connection and physical comfort.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.tab-selector').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab-selector').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.scene-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const description = title.nextElementSibling;
+                const arrow = title.querySelector('.dropdown-arrow');
+                
+                if (description.style.display === 'none' || !description.style.display) {
+                    description.style.display = 'block';
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    description.style.display = 'none';
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
