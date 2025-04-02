@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Path - Cyberpunk Roleplay</title>
+    <style>
+        /* Matrix background */
+        .matrix-background {
+            position: fixed;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .rain-column {
+            position: absolute;
+            color: #00ff00;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+            animation: rainFall 10s linear infinite;
+            opacity: 0.7;
+        }
+
+        .bright-char {
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.9);
+            opacity: 1;
+        }
+
+        @keyframes rainFall {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100vh); }
+        }
+
+        /* Main container */
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(2px);
+        }
+
+        /* Title */
+        .title {
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* Button container */
+        .button-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* Choice buttons */
+        .choice-button {
+            background-color: rgba(0, 40, 0, 0.5);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #00ff00;
+            padding: 20px 40px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+        }
+
+        .choice-button:hover {
+            background-color: rgba(0, 70, 0, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+        }
+
+        .choice-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 255, 0, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .choice-button:hover::before {
+            left: 100%;
+        }
+
+        /* Subtitle */
+        .subtitle {
+            color: #00cc00;
+            font-size: 1.2em;
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.8;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix rain background -->
+    <div class="matrix-background">
+        <div class="matrix-rain">
+            <!-- Static rain columns (reduced number for performance) -->
+            <div class="rain-column" style="left: 5%; animation-duration: 8s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ</div>
+            <div class="rain-column" style="left: 15%; animation-duration: 10s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ</div>
+            <div class="rain-column" style="left: 25%; animation-duration: 7s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ</div>
+            <div class="rain-column" style="left: 35%; animation-duration: 9s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ</div>
+            <div class="rain-column" style="left: 45%; animation-duration: 11s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">Choose Your Path</h1>
+        <div class="button-container">
+            <a href="https://mistressmariana.github.io/roleplay/consolidated.html" class="choice-button">Mistress</a>
+            <a href="#" class="choice-button">Mommy</a>
+        </div>
+        <p class="subtitle">Select your preferred persona to continue</p>
+    </div>
+</body>
+</html> 
