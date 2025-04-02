@@ -342,73 +342,53 @@ a:hover {
 .status-bar {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: rgba(0, 40, 0, 0.4);
     border-radius: 5px;
-    background-color: rgba(0, 50, 0, 0.3);
-    padding: 8px 15px;
-    font-size: 12px;
-    letter-spacing: 1px;
-    border: 1px solid #005500;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
 }
 
 .status-indicator {
-    position: relative;
-    padding-left: 15px;
-}
-
-.status-indicator:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 .status-indicator.online:before {
-    background-color: #55ff55;
-    box-shadow: 0 0 10px #55ff55;
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    margin-right: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
     animation: blink 2s infinite;
 }
 
 .status-ping {
-    font-size: 0.7em;
-    color: #aaaaaa;
-    opacity: 0;
-    animation: textReveal 0.5s ease-out forwards;
-    animation-delay: 2.0s;
+    color: #888888;
+    font-size: 0.9em;
 }
 
 .view-counter {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding: 8px 12px;
-    background-color: rgba(0, 50, 0, 0.2);
-    border: 1px solid #005500;
-    border-radius: 3px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    opacity: 0;
-    animation: textReveal 0.5s ease-out forwards;
-    animation-delay: 2.3s;
-}
-
-.counter-label {
-    font-size: 0.8em;
-    color: #88ff88;
-    letter-spacing: 1px;
+    padding: 10px 15px;
+    background-color: rgba(0, 40, 0, 0.4);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 255, 0, 0.2);
+    color: #ffffff;
 }
 
 .counter-value {
-    font-size: 0.9em;
     color: #00ff00;
     font-weight: bold;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-    font-family: 'Courier New', monospace;
-    letter-spacing: 1px;
 }
 
 /* Tabs and content sections */
@@ -545,263 +525,141 @@ a:hover {
     margin-bottom: 0;
 }
 
-.tab-selector {
-    background-color: rgba(0, 50, 0, 0.3);
-    padding: 10px 20px;
-    border-radius: 5px 5px 0 0;
-    display: inline-block;
-    letter-spacing: 2px;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-    transform: translateZ(5px);
-    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.3);
-    border-top: 1px solid #005500;
-    border-left: 1px solid #005500;
-    border-right: 1px solid #005500;
-    cursor: pointer;
-    font-size: 0.9em;
+.tab-selectors {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+    width: 100%;
+    gap: 5px;
 }
 
-.tab-selector::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #00ff00;
-    animation: lineGrow 1s forwards;
+.tab-selector {
+    background-color: rgba(0, 40, 0, 0.3);
+    padding: 12px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    text-align: center;
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1em;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    border: 1px solid rgba(0, 255, 0, 0.2);
 }
 
 .tab-selector:hover {
-    background-color: rgba(0, 70, 0, 0.5);
+    background-color: rgba(0, 60, 0, 0.5);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
 }
 
 .tab-selector.active {
-    background-color: rgba(0, 70, 0, 0.5);
+    background-color: rgba(0, 80, 0, 0.5);
     color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
 }
 
-/* Add glowing effect to tab selectors */
-.tab-selector.active::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #00ff00;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-/* Make the tabs content stand out more */
-.tabs-content {
-    background-color: rgba(0, 20, 0, 0.4);
-    padding: 20px;
-    border-radius: 0 5px 5px 5px;
-    position: relative;
-    overflow: hidden;
-    border-left: 1px solid #005500;
-    border-right: 1px solid #005500;
-    border-bottom: 1px solid #005500;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 0, 0.1);
-    transform: translateZ(-5px);
-    min-height: 150px;
-}
-
+/* Tab content styling */
 .tab-content {
     display: none;
+    background-color: rgba(0, 20, 0, 0.4);
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 15px;
+    border: 1px solid rgba(0, 255, 0, 0.3);
     opacity: 0;
-    animation: contentFadeIn 0.8s forwards;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .tab-content.active {
     display: block;
     opacity: 1;
+    transform: translateY(0);
 }
 
-/* ====================== SCENE IDEAS TAB STYLES ====================== */
-.scene-content {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+/* Profile text styling */
+.profile-text {
+    color: #aaaaaa;
+    line-height: 1.5;
+    font-size: 1em;
+    padding-left: 25px;
+    position: relative;
 }
 
+.prompt-char {
+    color: #00ff00;
+    position: absolute;
+    left: 0;
+}
+
+.prompt-char:nth-child(1) {
+    top: 0;
+}
+
+.prompt-char:nth-child(2) {
+    top: 0;
+    left: 10px;
+}
+
+/* Scene ideas styling */
 .scene-idea {
-    background-color: rgba(0, 40, 0, 0.3);
-    padding: 15px;
+    margin-bottom: 15px;
+    background-color: rgba(0, 30, 0, 0.4);
     border-radius: 5px;
-    border: 1px solid #005500;
-    transition: all 0.3s ease;
-    opacity: 0;
-    animation: statRowReveal 0.5s ease forwards;
-    animation-delay: 0.3s;
-}
-
-.scene-idea:nth-child(2) {
-    animation-delay: 0.5s;
-}
-
-.scene-idea:nth-child(3) {
-    animation-delay: 0.7s;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 0, 0.2);
 }
 
 .scene-title {
+    padding: 12px 15px;
     color: #00ff00;
-    font-size: 1.1em;
-    margin-bottom: 0;
     font-weight: bold;
-    letter-spacing: 1px;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 5px 0;
-}
-
-.scene-title:hover {
-    color: #88ff88;
-    text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
-}
-
-.dropdown-arrow {
-    font-size: 0.7em;
-    transition: all 0.3s ease;
-    margin-left: 10px;
-    opacity: 0.7;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-    animation: arrowPulse 2s infinite;
-}
-
-.scene-title:hover .dropdown-arrow {
-    opacity: 1;
-    text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
-    transform: translateY(2px);
+    background-color: rgba(0, 40, 0, 0.5);
 }
 
 .scene-description {
+    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
     color: #aaaaaa;
     line-height: 1.5;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-    transition: all 0.3s ease;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
 }
 
-/* Add clickable effect to scene titles */
-.scene-title::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: #00ff00;
-    transition: width 0.3s ease;
-}
-
-.scene-title:hover::after {
-    width: 100%;
+.dropdown-arrow {
+    font-size: 0.8em;
+    color: #00ff00;
 }
 
 /* ====================== GALLERY TAB STYLES ====================== */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    opacity: 0;
-    animation: friendsReveal 0.8s 0.2s forwards;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
 .gallery-item {
-    background-color: rgba(0, 40, 0, 0.3);
+    background-color: rgba(0, 50, 0, 0.4);
     padding: 15px;
     text-align: center;
     border-radius: 5px;
-    color: #88ff88;
-    border: 1px solid #005500;
-    transition: all 0.15s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    min-height: 60px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    transition: all 0.3s ease;
     text-decoration: none;
-    transform-style: preserve-3d;
-    transform: perspective(600px) translateZ(0);
-}
-
-.gallery-item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 255, 0, 0.05) 0%, rgba(0, 0, 0, 0) 50%);
-    pointer-events: none;
-    z-index: 1;
-    border-radius: 5px;
-}
-
-.gallery-item::after {
-    content: "";
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background-color: rgba(0, 20, 0, 0.5);
-    border-radius: 0 0 5px 5px;
-    transition: all 0.15s ease;
+    display: block;
 }
 
 .gallery-item:hover {
-    background-color: rgba(0, 60, 0, 0.5);
-    color: #00ff00;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 15px rgba(0, 255, 0, 0.3);
-}
-
-.gallery-item:active {
-    transform: translateY(3px) scale(0.98);
-    box-shadow: 0 2px 3px rgba(0, 255, 0, 0.3);
     background-color: rgba(0, 80, 0, 0.6);
-    animation: buttonPress 0.3s ease forwards;
-}
-
-.gallery-item:active::after {
-    height: 0;
-}
-
-.gallery-name {
-    margin-bottom: 5px;
-    font-size: 1.2em;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #00ff00;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
-    transition: all 0.15s ease;
-}
-
-.gallery-item:hover .gallery-name {
-    text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
-    transform: scale(1.05);
-}
-
-.gallery-item:active .gallery-name {
-    transform: scale(0.95);
-    color: #88ff88;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
 }
 
 /* ====================== HIGHLIGHT STYLES ====================== */
@@ -1030,7 +888,7 @@ a:hover {
 
 @keyframes blink {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    50% { opacity: 0.5; }
 }
 
 @keyframes fireAnimation {
@@ -1128,4 +986,14 @@ a:hover {
     .tabs-content {
         padding: 15px;
     }
+}
+
+/* Copyright styling */
+.copyright {
+    text-align: center;
+    color: #00ff00;
+    font-size: 0.8em;
+    padding: 10px 0;
+    margin-top: 20px;
+    opacity: 0.7;
 } 

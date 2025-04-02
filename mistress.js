@@ -63,18 +63,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }, animDuration + 2000); // Add a buffer to ensure animation completes
     }
     
-    // Handle tab switching
-    const tabInputs = document.querySelectorAll('.tab-input');
-    tabInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            const content = document.querySelector(`.${this.id}-content`);
-            if (content) {
-                content.style.display = 'block';
-                // Hide other tab contents
-                document.querySelectorAll('.tab-content').forEach(tab => {
-                    if (tab !== content) {
-                        tab.style.display = 'none';
-                    }
+    // Tab switching functionality
+    const tabSelectors = document.querySelectorAll('.tab-selector');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabSelectors.forEach(selector => {
+        selector.addEventListener('click', function() {
+            // Remove active class from all selectors and contents
+            tabSelectors.forEach(el => el.classList.remove('active'));
+            tabContents.forEach(el => el.classList.remove('active'));
+            
+            // Add active class to clicked selector
+            this.classList.add('active');
+            
+            // Get the tab data attribute
+            const tabId = this.getAttribute('data-tab');
+            
+            // Add active class to corresponding content
+            document.getElementById(`${tabId}-content`).classList.add('active');
+            
+            // Play click sound if available
+            const clickSound = document.getElementById('click-sound');
+            if (clickSound) {
+                clickSound.currentTime = 0;
+                clickSound.play().catch(e => {
+                    // Silently fail if autoplay is blocked
+                    console.log("Sound play prevented by browser policy");
                 });
             }
         });
@@ -83,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Profile view counter simulation
     const viewCounter = document.querySelector('.counter-value');
     if (viewCounter) {
-        const baseViews = Math.floor(1000 + Math.random() * 9000);
+        // Generate random starting count between 1000 and 9999
+        const baseViews = parseInt(viewCounter.textContent) || Math.floor(1000 + Math.random() * 9000);
         viewCounter.textContent = baseViews.toString();
         
         // Increment views occasionally
@@ -103,6 +118,23 @@ document.addEventListener('DOMContentLoaded', function() {
             cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
         }, 500);
     }
+    
+    // Scene idea expand/collapse functionality
+    const sceneTitles = document.querySelectorAll('.scene-title');
+    sceneTitles.forEach(title => {
+        title.addEventListener('click', function() {
+            const description = this.nextElementSibling;
+            const arrow = this.querySelector('.dropdown-arrow');
+            
+            if (description.style.maxHeight) {
+                description.style.maxHeight = null;
+                arrow.innerHTML = '▼';
+            } else {
+                description.style.maxHeight = description.scrollHeight + 'px';
+                arrow.innerHTML = '▲';
+            }
+        });
+    });
     
     // Add animation classes on scroll
     document.addEventListener('scroll', function() {
