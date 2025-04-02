@@ -95,9 +95,9 @@ body {
 .content {
     display: flex;
     position: relative;
-    min-height: 600px;
+    min-height: 700px;
     overflow: visible;
-    margin-top: -40px; /* Pull content up to overlap with header */
+    margin-top: -100px; /* Increase negative margin to overlap title */
 }
 
 /* Character Image */
@@ -119,6 +119,7 @@ body {
     transition: opacity 0.3s ease;
 }
 
+/* Hover Overlay */
 .hover-overlay {
     position: absolute;
     top: 0;
@@ -129,12 +130,15 @@ body {
     transition: opacity 0.3s ease;
     pointer-events: none;
     z-index: 11; /* Higher than main image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .hover-overlay img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 60%; /* 40% smaller than original */
+    height: 60%; /* 40% smaller than original */
+    object-fit: contain;
 }
 
 .character-image:hover .main-image {
