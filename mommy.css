@@ -44,7 +44,7 @@ body {
 .profile-container {
     width: 100%;
     max-width: 1400px;
-    margin: 0 auto;
+    margin: 2rem auto 0; /* Added top margin to push content down */
     background-color: var(--card-bg);
     overflow: hidden;
     box-shadow: none;
@@ -97,7 +97,7 @@ body {
     position: relative;
     min-height: 700px;
     overflow: visible;
-    margin-top: -170px; /* Much more negative margin to overlap title */
+    margin-top: -70px; /* Reduced negative margin to show more of the top */
 }
 
 /* Character Image */
