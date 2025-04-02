@@ -23,23 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         matrixBackground.appendChild(rainColumn);
     }
 
-    // Handle hover effects
-    const aliasName = document.querySelector('.alias-name');
-    if (aliasName) {
-        const letters = aliasName.textContent.split('').map((char, i) => {
-            return `<span style="animation-delay: ${i * 0.2}s">${char}</span>`;
-        });
-        aliasName.innerHTML = letters.join('');
-    }
-
-    // Add cursor effect
-    const cursor = document.createElement('span');
-    cursor.className = 'cursor';
-    cursor.textContent = '_';
-    if (aliasName) {
-        aliasName.appendChild(cursor);
-    }
-
     // Handle tab switching
     const tabInputs = document.querySelectorAll('.tab-input');
     tabInputs.forEach(input => {
