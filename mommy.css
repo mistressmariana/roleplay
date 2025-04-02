@@ -57,6 +57,8 @@ body {
     padding: 1.5rem;
     text-align: center;
     border-bottom: 3px solid var(--accent-color);
+    position: relative;
+    z-index: 5; /* Lower than character image */
 }
 
 .profile-title {
@@ -95,6 +97,7 @@ body {
     position: relative;
     min-height: 600px;
     overflow: visible;
+    margin-top: -40px; /* Pull content up to overlap with header */
 }
 
 /* Character Image */
