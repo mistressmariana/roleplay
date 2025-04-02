@@ -89,37 +89,36 @@ body {
     margin-left: 0.2rem;
 }
 
-/* Content Section */
+/* Content Section - Complete rewrite for maximum reliability */
 .content {
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    overflow: visible;
-    gap: 20px;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: 66.67% 33.33%;
     width: 100%;
     box-sizing: border-box;
+    padding: 20px;
+    gap: 20px;
 }
 
-/* Character Image */
+/* Character Image - Complete rewrite with absolute positioning */
 .character-image {
-    width: 66.67%; /* 2/3 of the width */
     position: relative;
-    flex: 2;
-    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    /* Remove height: fit-content which can cause sizing issues */
-    min-height: 400px; /* Add minimum height */
-    max-height: 800px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .character-image .main-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
     display: block;
     transition: opacity 0.3s ease;
-    object-fit: cover;
 }
 
 .hover-overlay {
@@ -147,17 +146,15 @@ body {
     opacity: 1;
 }
 
-/* Info Section */
+/* Info Section - Complete rewrite for reliability */
 .info-section {
-    width: 33.33%; /* 1/3 of the width */
-    flex: 1;
-    padding: 1.5rem;
+    width: 100%;
     background-color: var(--card-bg);
-    position: relative;
+    padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Allow scrolling if content is too tall */
-    max-height: 800px; /* Match the image max-height */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-height: 800px;
+    overflow-y: auto;
 }
 
 /* Status Bar */
@@ -423,17 +420,12 @@ body {
 /* Adjust for mobile view */
 @media (max-width: 768px) {
     .content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .character-image {
-        width: 100%;
-        max-height: 400px;
-        margin-bottom: 20px;
-    }
-    
-    .info-section {
-        width: 100%;
+        padding-bottom: 75%; /* Reduce height on mobile */
     }
     
     .profile-title {

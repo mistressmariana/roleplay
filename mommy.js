@@ -189,35 +189,49 @@ function initImageHover() {
     const mainImage = document.querySelector('.main-image');
     const hoverOverlay = document.querySelector('.hover-overlay');
     
-    // Make sure overlay is hidden initially
-    if (hoverOverlay && mainImage) {
-        // Force initial state
-        hoverOverlay.style.opacity = '0';
-        mainImage.style.opacity = '1';
-        
-        // Add explicit event listeners to ensure hover works
-        charImage.addEventListener('mouseenter', function() {
-            hoverOverlay.style.opacity = '1';
-            mainImage.style.opacity = '0';
-        });
-        
-        charImage.addEventListener('mouseleave', function() {
-            hoverOverlay.style.opacity = '0';
-            mainImage.style.opacity = '1';
-        });
-        
-        // Touch support for mobile
-        charImage.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            if (hoverOverlay.style.opacity === '0' || hoverOverlay.style.opacity === '') {
-                hoverOverlay.style.opacity = '1';
-                mainImage.style.opacity = '0';
-            } else {
-                hoverOverlay.style.opacity = '0';
-                mainImage.style.opacity = '1';
-            }
-        }, {passive: false});
+    // Safety check
+    if (!charImage || !mainImage || !hoverOverlay) {
+        console.warn('Image hover elements not found');
+        return;
     }
+    
+    // Force initial state with !important styles
+    const forceStyle = document.createElement('style');
+    forceStyle.textContent = `
+        .character-image .main-image { opacity: 1 !important; }
+        .character-image .hover-overlay { opacity: 0 !important; }
+        .character-image:hover .main-image { opacity: 0 !important; }
+        .character-image:hover .hover-overlay { opacity: 1 !important; }
+    `;
+    document.head.appendChild(forceStyle);
+    
+    // Clear any inline styles
+    mainImage.style.opacity = '';
+    hoverOverlay.style.opacity = '';
+    
+    // Add explicit event listeners as backup
+    charImage.addEventListener('mouseenter', function() {
+        mainImage.style.opacity = '0';
+        hoverOverlay.style.opacity = '1';
+    });
+    
+    charImage.addEventListener('mouseleave', function() {
+        mainImage.style.opacity = '1';
+        hoverOverlay.style.opacity = '0';
+    });
+    
+    // Touch support for mobile
+    charImage.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        // Toggle state
+        if (window.getComputedStyle(hoverOverlay).opacity < 0.5) {
+            mainImage.style.opacity = '0';
+            hoverOverlay.style.opacity = '1';
+        } else {
+            mainImage.style.opacity = '1';
+            hoverOverlay.style.opacity = '0';
+        }
+    }, {passive: false});
 }
 
 // Initialize sounds
