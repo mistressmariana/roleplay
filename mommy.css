@@ -43,14 +43,12 @@ body {
 /* Profile Container */
 .profile-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     background-color: transparent;
     overflow: visible;
     box-shadow: none;
     position: relative;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Header Section */
@@ -59,9 +57,6 @@ body {
     padding: 1.5rem;
     text-align: center;
     border-bottom: 3px solid var(--accent-color);
-    width: 100%;
-    position: relative;
-    z-index: 10;
 }
 
 .profile-title {
@@ -97,29 +92,31 @@ body {
 /* Content Section */
 .content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: relative;
     overflow: visible;
-    margin-top: 10px;
+    gap: 20px;
+    padding: 20px 0;
 }
 
 /* Character Image */
 .character-image {
     position: relative;
-    width: 100%;
-    max-height: 600px;
+    width: 40%;
+    flex-shrink: 0;
     overflow: hidden;
-    margin-bottom: 1rem;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    max-height: 600px;
 }
 
 .character-image .main-image {
     width: 100%;
+    height: auto;
     display: block;
-    object-fit: cover;
-    max-height: 600px;
     transition: opacity 0.3s ease;
+    object-fit: cover;
 }
 
 .hover-overlay {
@@ -149,8 +146,7 @@ body {
 
 /* Info Section */
 .info-section {
-    width: 100%;
-    margin: 0 auto;
+    width: 60%;
     padding: 1.5rem;
     background-color: var(--card-bg);
     position: relative;
@@ -420,15 +416,21 @@ body {
 
 /* Adjust for mobile view */
 @media (max-width: 768px) {
-    .profile-title {
-        font-size: 2rem;
+    .content {
+        flex-direction: column;
     }
     
     .character-image {
+        width: 100%;
         max-height: 400px;
+        margin-bottom: 20px;
     }
     
-    .character-image .main-image {
-        max-height: 400px;
+    .info-section {
+        width: 100%;
+    }
+    
+    .profile-title {
+        font-size: 2rem;
     }
 } 
