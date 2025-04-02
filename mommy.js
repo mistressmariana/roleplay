@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Create pink particles background
     createParticlesBackground();
     
+    // Create raining hearts
+    createHeartRain();
+    
     // Initialize tab functionality
     initTabs();
     
@@ -103,6 +106,66 @@ function createParticlesBackground() {
         }
     `;
     document.head.appendChild(style);
+}
+
+// Create raining hearts
+function createHeartRain() {
+    // Create container for heart rain
+    const heartRainContainer = document.createElement('div');
+    heartRainContainer.className = 'heart-rain';
+    document.body.appendChild(heartRainContainer);
+    
+    // Create heart symbols
+    const heartColors = [
+        '#ff9ec0', // lighter pink
+        '#ff5e9c', // deeper pink
+        '#ff3980', // hot pink
+        '#ffb6c1', // light pink
+        '#ff69b4'  // bright pink
+    ];
+    
+    const heartShapes = ['♥', '❤', '💕', '💖', '💗', '💓'];
+    
+    // Create hearts at random intervals
+    function createHeart() {
+        const heart = document.createElement('div');
+        
+        // Random properties
+        const size = Math.random() * 30 + 10; // 10-40px
+        const posX = Math.random() * 100;     // 0-100% of screen width
+        const duration = Math.random() * 6 + 3; // 3-9 seconds
+        const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+        const heartShape = heartShapes[Math.floor(Math.random() * heartShapes.length)];
+        
+        // Style the heart
+        heart.innerHTML = heartShape;
+        heart.style.cssText = `
+            position: absolute;
+            font-size: ${size}px;
+            left: ${posX}%;
+            top: -50px;
+            color: ${color};
+            text-shadow: 0 0 10px ${color}40;
+            animation: heartFall ${duration}s linear forwards;
+            z-index: 1000;
+        `;
+        
+        // Add to container
+        heartRainContainer.appendChild(heart);
+        
+        // Remove after animation ends
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+    }
+    
+    // Create initial hearts
+    for (let i = 0; i < 10; i++) {
+        setTimeout(createHeart, i * 300);
+    }
+    
+    // Continue creating hearts
+    setInterval(createHeart, 300);
 }
 
 // Initialize tab functionality

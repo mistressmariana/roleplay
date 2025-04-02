@@ -99,12 +99,12 @@ body {
     gap: 20px;
 }
 
-/* Character Image - Complete rewrite with absolute positioning */
+/* Character Image - Fixing image size issue */
 .character-image {
     position: relative;
     width: 100%;
     height: 0;
-    padding-bottom: 90%;
+    padding-bottom: 70%; /* Reduced for a better fit */
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -112,21 +112,22 @@ body {
 
 .character-image .main-image {
     position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Changed to contain to fit entire image in container */
     display: block;
     transition: opacity 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
 }
 
 .hover-overlay {
     position: absolute;
-    top: 5%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -135,7 +136,8 @@ body {
 .hover-overlay img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Changed to contain to fit entire image in container */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
 }
 
 .character-image:hover .main-image {
@@ -415,6 +417,28 @@ body {
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Add heart rain animation */
+@keyframes heartFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.heart-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
 }
 
 /* Adjust for mobile view */
