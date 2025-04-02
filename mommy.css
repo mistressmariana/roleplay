@@ -42,13 +42,13 @@ body {
 
 /* Profile Container */
 .profile-container {
-    width: 90%;
-    max-width: 1000px;
+    width: 95%;
+    max-width: 1200px;
     margin: 2rem auto;
     background-color: var(--card-bg);
-    border-radius: 20px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 10px 30px var(--shadow-color);
+    box-shadow: none;
     position: relative;
     animation: container-reveal 1s ease-out;
 }
@@ -94,30 +94,17 @@ body {
 /* Content Section */
 .content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 0;
-}
-
-@media (min-width: 768px) {
-    .content {
-        flex-direction: row;
-    }
 }
 
 /* Character Image */
 .character-image {
-    flex: 1;
+    flex: 2;
     position: relative;
     overflow: hidden;
-    min-height: 300px;
-    border-radius: 0 0 20px 20px;
-}
-
-@media (min-width: 768px) {
-    .character-image {
-        border-radius: 0;
-        max-width: 40%;
-    }
+    min-height: 500px;
+    border-radius: 0;
 }
 
 .character-image .main-image {
@@ -136,6 +123,7 @@ body {
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s ease;
+    pointer-events: none;
 }
 
 .hover-overlay img {
@@ -413,4 +401,21 @@ body {
 @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Adjust for mobile view */
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    
+    .character-image {
+        flex: 1;
+        max-width: 100%;
+        min-height: 300px;
+    }
+    
+    .info-section {
+        flex: 1;
+    }
 } 
