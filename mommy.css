@@ -92,26 +92,26 @@ body {
 /* Content Section */
 .content {
     display: flex;
+    flex-direction: column;
     position: relative;
-    min-height: 600px;
     overflow: visible;
 }
 
 /* Character Image */
 .character-image {
-    position: absolute;
-    width: 66.67%; /* 2/3 of the width */
-    height: 100%;
-    top: 0;
-    left: 0;
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-height: 600px;
     overflow: hidden;
-    z-index: 2; /* Lower z-index so it doesn't overlap with menu content */
+    margin-bottom: 1rem;
 }
 
 .character-image .main-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
     display: block;
     transition: opacity 0.3s ease;
 }
@@ -125,13 +125,12 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-    z-index: 3; /* Higher than main image */
 }
 
 .hover-overlay img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .character-image:hover .main-image {
@@ -144,14 +143,13 @@ body {
 
 /* Info Section */
 .info-section {
-    width: 33.33%; /* Exactly 1/3 of the width */
-    margin-left: 66.67%; /* Push to the right by 2/3 */
+    width: 100%;
+    margin: 0 auto;
     padding: 1.5rem;
     background-color: var(--card-bg);
     position: relative;
-    z-index: 5; /* Higher z-index to ensure menu content appears above the image */
-    min-height: 600px; /* Match content min-height */
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1); /* Add shadow for separation */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Status Bar */
@@ -416,19 +414,15 @@ body {
 
 /* Adjust for mobile view */
 @media (max-width: 768px) {
-    .content {
-        flex-direction: column;
-        min-height: auto;
+    .profile-title {
+        font-size: 2rem;
     }
     
     .character-image {
-        position: relative;
-        width: 100%;
-        height: 400px;
+        max-height: 400px;
     }
     
-    .info-section {
-        width: 100%;
-        margin-left: 0;
+    .character-image .main-image {
+        max-height: 400px;
     }
 } 
