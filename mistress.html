@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Mistress Mariana - Cyberpunk Profile</title>
+ <link rel="stylesheet" href="consolidated.css">
+ <style>
+ /* Matrix background */
+ .matrix-background {
+ position: fixed;
+ z-index: -1;
+ opacity: 0.7;
+ }
+
+ .rain-column {
+ position: absolute;
+ color: #00ff00;
+ text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+ animation: rainFall 10s linear infinite;
+ opacity: 0.7;
+ }
+
+ .bright-char {
+ color: #00ff88;
+ text-shadow: 0 0 10px rgba(0, 255, 136, 0.9);
+ opacity: 1;
+ }
+
+ @keyframes rainFall {
+ from { transform: translateY(-100%); }
+ to { transform: translateY(100vh); }
+ }
+
+ /* Main layout */
+ .profile-container {
+ width: 95%;
+ max-width: 1200px;
+ margin: 20px auto;
+ background-color: rgba(0, 0, 0, 0.4);
+ border: 1px solid rgba(0, 255, 0, 0.3);
+ box-shadow: 0 0 20px rgba(0, 255, 0, 0.15);
+ border-radius: 5px;
+ position: relative;
+ backdrop-filter: blur(2px);
+ }
+
+ /* Content layout */
+ .content {
+ display: flex;
+ align-items: flex-start;
+ justify-content: center;
+ padding: 20px;
+ gap: 0;
+ margin: 0 auto;
+ max-width: 1200px;
+ position: relative;
+ transform: translateX(100px); /* Move everything to the right */
+ }
+
+ /* Character image */
+ .character-image {
+ position: relative;
+ z-index: 3;
+ width: 450px;
+ cursor: pointer;
+ margin: 0;
+ flex: 0 0 450px;
+ }
+
+ .character-image img.main-image {
+ width: 100%;
+ height: auto;
+ display: block;
+ pointer-events: none;
+ }
+
+ /* Matrix overlay */
+ .matrix-overlay {
+ position: absolute;
+ inset: 0;
+ opacity: 0;
+ transition: opacity 0.3s ease;
+ z-index: 4; /* Ensure overlay is above the image */
+ }
+
+ .matrix-overlay img {
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ }
+
+ .character-image:hover .matrix-overlay {
+ opacity: 1;
+ }
+
+ /* Tab system */
+ .tab-input {
+ display: none;
+ }
+
+ .tab-labels {
+ display: flex;
+ justify-content: space-between;
+ width: 100%;
+ margin-bottom: 15px;
+ gap: 8px;
+ position: relative;
+ z-index: 3;
+ }
+
+ .tab-label {
+ cursor: pointer;
+ background-color: rgba(0, 40, 0, 0.5);
+ padding: 8px 12px;
+ border-radius: 5px 5px 0 0;
+ transition: background-color 0.3s;
+ font-size: 0.9em;
+ white-space: nowrap;
+ flex: 1;
+ text-align: center;
+ }
+
+ .tab-content {
+ display: none;
+ padding: 15px;
+ background-color: rgba(0, 20, 0, 0.7);
+ border-radius: 5px;
+ border-top: 1px solid rgba(0, 255, 0, 0.3);
+ }
+
+ /* Show active tab content */
+ #tab1:checked ~ .tabs-container .tab1-content,
+ #tab2:checked ~ .tabs-container .tab2-content,
+ #tab3:checked ~ .tabs-container .tab3-content,
+ #tab4:checked ~ .tabs-container .tab4-content {
+ display: block;
+ }
+
+ /* Style active tab label */
+ #tab1:checked ~ .tabs-container .tab-labels label[for="tab1"],
+ #tab2:checked ~ .tabs-container .tab-labels label[for="tab2"],
+ #tab3:checked ~ .tabs-container .tab-labels label[for="tab3"],
+ #tab4:checked ~ .tabs-container .tab-labels label[for="tab4"] {
+ background-color: rgba(0, 70, 0, 0.8);
+ color: #00ff00;
+ text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
+ }
+
+ /* Info section */
+ .info-section {
+ flex: 0 0 450px;
+ width: 450px;
+ background-color: rgba(0, 0, 0, 0.6);
+ padding: 15px;
+ border-radius: 5px;
+ border: 1px solid rgba(0, 255, 0, 0.2);
+ z-index: 2;
+ margin-left: -20px;
+ position: relative;
+ }
+
+ /* Stats styling */
+ .stat-row {
+ text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+ background-color: rgba(0, 0, 0, 0.4);
+ padding: 5px 10px;
+ border-radius: 3px;
+ margin-bottom: 8px;
+ }
+
+ .stat-row span {
+ color: #00ff00;
+ font-weight: bold;
+ margin-right: 20px;
+ text-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
+ }
+
+ /* Gallery grid */
+ .gallery-grid {
+ display: grid;
+ grid-template-columns: repeat(2, 1fr);
+ gap: 10px;
+ margin-top: 10px;
+ }
+
+ .gallery-item {
+ background-color: rgba(0, 30, 0, 0.5);
+ border: 1px solid rgba(0, 255, 0, 0.3);
+ padding: 15px 10px;
+ text-align: center;
+ transition: all 0.3s ease;
+ }
+
+ /* Copyright */
+ .copyright {
+ text-align: center;
+ font-size: 0.8em;
+ color: #00cc00;
+ padding: 10px 0;
+ opacity: 0.7;
+ border-top: 1px solid rgba(0, 255, 0, 0.3);
+ margin-top: 15px;
+ }
+
+ /* Scene Ideas tab specific */
+ label[for="tab3"] {
+ padding: 8px 6px;
+ font-size: 0.85em;
+ }
+ </style>
+</head>
+<body>
+ <!-- Matrix rain background (static HTML version) -->
+ <div class="matrix-background">
+ <div class="matrix-rain">
+ <!-- Static rain columns -->
+ <div class="rain-column" style="left: 5%; animation-duration: 8s; animation-delay: 0s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">空</span><br>時雨暗</div>
+ <div class="rain-column" style="left: 10%; animation-duration: 10s; animation-delay: 1s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">夢</span><br>幻影光</div>
+ <div class="rain-column" style="left: 15%; animation-duration: 7s; animation-delay: 2s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">闇</span><br>扉秘密</div>
+ <div class="rain-column" style="left: 20%; animation-duration: 9s; animation-delay: 0.5s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">虚</span><br>無幽霊</div>
+ <div class="rain-column" style="left: 25%; animation-duration: 11s; animation-delay: 1.5s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">電</span><br>脳魂魔</div>
+ <div class="rain-column" style="left: 30%; animation-duration: 6s; animation-delay: 2.5s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">星</span><br>宇宙間</div>
+ <div class="rain-column" style="left: 35%; animation-duration: 8s; animation-delay: 1.7s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">破</span><br>壊迷路</div>
+ <div class="rain-column" style="left: 40%; animation-duration: 9s; animation-delay: 0.3s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">永</span><br>遠終焉</div>
+ <div class="rain-column" style="left: 45%; animation-duration: 10s; animation-delay: 1.2s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">悪</span><br>鬼怪異</div>
+ <div class="rain-column" style="left: 50%; animation-duration: 7s; animation-delay: 2.1s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">光</span><br>陰闇明</div>
+ <div class="rain-column" style="left: 55%; animation-duration: 11s; animation-delay: 0.8s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">風</span><br>火水土</div>
+ <div class="rain-column" style="left: 60%; animation-duration: 9s; animation-delay: 1.9s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">未</span><br>知数式</div>
+ <div class="rain-column" style="left: 65%; animation-duration: 7s; animation-delay: 2.4s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">絶</span><br>望混沌</div>
+ <div class="rain-column" style="left: 70%; animation-duration: 10s; animation-delay: 0.2s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">罪</span><br>鎖悪徳</div>
+ <div class="rain-column" style="left: 75%; animation-duration: 8s; animation-delay: 1.3s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">暗</span><br>黒白赤</div>
+ <div class="rain-column" style="left: 80%; animation-duration: 7s; animation-delay: 2.2s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">戦</span><br>闘死神</div>
+ <div class="rain-column" style="left: 85%; animation-duration: 9s; animation-delay: 0.7s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">寂</span><br>静乱舞</div>
+ <div class="rain-column" style="left: 90%; animation-duration: 11s; animation-delay: 1.6s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">錯</span><br>乱狂気</div>
+ <div class="rain-column" style="left: 95%; animation-duration: 8s; animation-delay: 2.3s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">消</span><br>滅終末</div>
+ <div class="rain-column" style="left: 7%; animation-duration: 9s; animation-delay: 0.4s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">誘</span><br>惑妖艶</div>
+ <div class="rain-column" style="left: 13%; animation-duration: 7s; animation-delay: 1.8s;">ｱｲｳｴｵｶｷｸ<span class="bright-char">ｹ</span>ｺｻｼｽｾｿ<br>ﾀﾁﾂﾃﾄﾅﾆﾇ<span class="bright-char">ﾈ</span>ﾉ<br>ﾊﾋﾌﾍﾎﾏﾐﾑ<br>ﾒﾓﾔﾕﾖﾗﾘ<span class="bright-char">ﾙ</span><br>ﾚﾛﾜｦﾝ<span class="bright-char">闘</span><br>志力強</div>
+ </div>
+ </div>
+ 
+ <!-- Hidden audio elements that will be triggered by CSS :active state -->
+ <audio id="click-sound" preload="auto">
+ <source src="https://soundbible.com/mp3/Mouse-Click-02-c-FesliyanStudios.com-2.mp3" type="audio/mpeg">
+ </audio>
+ 
+ <div class="profile-container">
+ <div class="header">
+ <div class="alias-name">
+ <span>M</span><span>i</span><span>s</span><span>t</span><span>r</span><span>e</span><span>s</span><span>s</span>
+ <span>&nbsp;</span>
+ <span>M</span><span>a</span><span>r</span><span>i</span><span>a</span><span>n</span><span>a</span>
+ <span class="cursor"></span>
+ </div>
+ </div>
+ 
+ <div class="content">
+ <div class="character-image">
+ <img class="main-image" src="https://ist8-3.filesor.com/pimpandhost.com/2/6/8/2/268217/j/X/G/U/jXGUI/character.png" alt="Character Image">
+ <div class="matrix-overlay">
+ <img src="https://ist8-3.filesor.com/pimpandhost.com/2/6/8/2/268217/j/X/I/x/jXIxQ/mtoon.png" alt="Matrix Image">
+ </div>
+ </div>
+ 
+ <div class="info-section">
+ <div class="status-bar">
+ <div class="status-indicator online">ONLINE</div>
+ <div class="status-ping">PING: 23ms</div>
+ </div>
+ 
+ <div class="view-counter">
+ <div class="counter-label">PROFILE VIEWS:</div>
+ <div class="counter-value"></div>
+ </div>
+ 
+ <div class="stats-section">
+ <!-- Tab inputs need to be at the top -->
+ <input type="radio" id="tab1" name="tabs" class="tab-input" checked>
+ <input type="radio" id="tab2" name="tabs" class="tab-input">
+ <input type="radio" id="tab3" name="tabs" class="tab-input">
+ <input type="radio" id="tab4" name="tabs" class="tab-input">
+ 
+ <!-- Tabs container -->
+ <div class="tabs-container">
+ <!-- Tab labels -->
+ <div class="tab-labels">
+ <label for="tab1" class="tab-label">STATS</label>
+ <label for="tab2" class="tab-label">PROFILE</label>
+ <label for="tab3" class="tab-label">SCENE IDEAS</label>
+ <label for="tab4" class="tab-label">GALLERY</label>
+ </div>
+ 
+ <!-- Tab content -->
+ <div class="tab-content tab1-content">
+ <div class="stat-row"><span>AGE:</span> Dare you to ask</div>
+ <div class="stat-row"><span>SEX:</span> Shemale</div>
+ <div class="stat-row"><span>HEIGHT:</span> 6'9"</div>
+ <div class="stat-row"><span>BUILD:</span> Athletic</div>
+ <div class="stat-row"><span>ORIENTATION:</span> Pansexual</div>
+ <div class="stat-row"><span>STATUS:</span> Complicated</div>
+ <div class="stat-row"><span>PROFESSION:</span> Mommy Mistress</div>
+ <div class="stat-row"><span>KINKS:</span> <a target="_blank" href="https://www.f-list.net/c/mistress%20mariana/" class="kinks-link">View Full List</a></div>
+ </div>
+ 
+ <div class="tab-content tab2-content">
+ <div class="case-content">
+ <span class="terminal-prompt">> </span>Born into the underground scene of <span class="highlight">NEON CITY</span>, Mariana developed a reputation as a fierce Mistress with a taste for the <span class="highlight">EXTREME</span>. Her body serves as a canvas of her life experiences, each <span class="highlight">TATTOO</span> telling a story of her past.
+ </div>
+ </div>
+ 
+ <div class="tab-content tab3-content">
+ <div class="scene-content">
+ <input type="checkbox" id="scene1" class="scene-checkbox">
+ <div class="scene-idea">
+ <label for="scene1" class="scene-title">Mommy's Plaything (consensual) <span class="dropdown-arrow">▼</span></label>
+ <div class="scene-description">
+ Focussed around the connection and bond between Mommy and Her plaything, this centres mainly on connection, passion, affection and sensuality. A good mix of smut and story around a slice of life scene - at home, at a resort, on a date. Copious amounts of kissing and touching, it can involve a wet weekend spend indoors on the sofa with 'Netflix and not too chill' to a resort where you are spoiled and defiled.
+ </div>
+ </div>
+ 
+ <input type="checkbox" id="scene2" class="scene-checkbox">
+ <div class="scene-idea">
+ <label for="scene2" class="scene-title">Mistress' Pet (dubcon) <span class="dropdown-arrow">▼</span></label>
+ <div class="scene-description">
+ You are an open minded pet coming for training with an experienced and dominant Futa Mistress. Be it at a club, or within Mariana's private dungeon / basement, you will be leashed, tied, and trained how to serve as a good pet. A mix of dubcon moving to consensual serving, prepared to have your boundaries pushed.
+ </div>
+ </div>
+ 
+ <input type="checkbox" id="scene3" class="scene-checkbox">
+ <div class="scene-idea">
+ <label for="scene3" class="scene-title">Mz Bitch's Fucktoy (noncon) <span class="dropdown-arrow">▼</span></label>
+ <div class="scene-description">
+ Be preared to be treated like a piece of meat. Kidnapped and taken from the street. Slipped a roofie in your drink at a bar. Be set in the future where you are nothing but a worthless piece of meat assigned to Mariana for usage and breakage. Become a farm animal where you are held in a pen and treated worse than the pigs.
+ </div>
+ </div>
+ </div>
+ </div>
+ 
+ <div class="tab-content tab4-content">
+ <div class="gallery-grid">
+ <a target="_blank" href="https://ist8-2.filesor.com/pimpandhost.com/2/6/8/2/268217/i/W/c/k/iWckW/1539954067_l.jpg" class="gallery-item">
+ <div class="gallery-name">IMAGE 1</div>
+ </a>
+ <a target="_blank" href="https://ist8-2.filesor.com/pimpandhost.com/2/6/8/2/268217/i/W/c/k/iWckR/196218528_l.jpg" class="gallery-item">
+ <div class="gallery-name">IMAGE 2</div>
+ </a>
+ <a target="_blank" href="https://ist8-2.filesor.com/pimpandhost.com/2/6/8/2/268217/i/L/w/0/iLw0p/36772196_l.jpg" class="gallery-item">
+ <div class="gallery-name">IMAGE 3</div>
+ </a>
+ <a target="_blank" href="https://ist8-2.filesor.com/pimpandhost.com/2/6/8/2/268217/i/L/w/0/iLw0i/36772194_l.jpg" class="gallery-item">
+ <div class="gallery-name">IMAGE 4</div>
+ </a>
+ <a target="_blank" href="https://ist8-2.filesor.com/pimpandhost.com/2/6/8/2/268217/i/L/w/0/iLw0f/36772190.jpg" class="gallery-item">
+ <div class="gallery-name">IMAGE 5</div>
+ </a>
+ <a target="_blank" href="https://ist8-2.filesor.com/pimpandhost.com/2/6/8/2/268217/i/W/c/k/iWckV/1423807776.jpg" class="gallery-item">
+ <div class="gallery-name">IMAGE 6</div>
+ </a>
+ </div>
+ </div>
+ </div>
+ <div class="copyright">code is Mine - steal at your peril, ask at your pleasure</div>
+ </div>
+ </div>
+ </div>
+ </div>
+</body>
+</html> 
