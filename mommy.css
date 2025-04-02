@@ -102,13 +102,13 @@ body {
 /* Character Image */
 .character-image {
     position: relative;
-    width: 40%;
+    width: 66.67%; /* 2/3 of the width */
     flex-shrink: 0;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     height: fit-content;
-    max-height: 600px;
+    max-height: 800px;
 }
 
 .character-image .main-image {
@@ -146,7 +146,7 @@ body {
 
 /* Info Section */
 .info-section {
-    width: 60%;
+    width: 33.33%; /* 1/3 of the width */
     padding: 1.5rem;
     background-color: var(--card-bg);
     position: relative;
