@@ -65,58 +65,38 @@ document.addEventListener('DOMContentLoaded', function() {
         createRainColumn();
     }
     
-    // Tab switching functionality
+    // Tab switching functionality - simplified to match working Mommy version
     function initTabs() {
         const tabSelectors = document.querySelectorAll('.tab-selector');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        console.log('Initializing tabs:', tabSelectors.length, 'selectors,', tabContents.length, 'contents');
         
         if (tabSelectors.length === 0) {
-            console.error('No tab selectors found!');
+            console.warn('No tab selectors found');
             return;
         }
         
-        if (tabContents.length === 0) {
-            console.error('No tab contents found!');
-            return;
-        }
-        
-        tabSelectors.forEach((selector, index) => {
-            // Make sure it's clickable
-            selector.style.cursor = 'pointer';
-            
-            selector.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                console.log('Tab clicked:', this.getAttribute('data-tab'));
-                
-                // Remove active class from all selectors and contents
-                tabSelectors.forEach(el => {
-                    el.classList.remove('active');
-                });
-                tabContents.forEach(el => {
-                    el.classList.remove('active');
+        tabSelectors.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab-selector').forEach(t => {
+                    t.classList.remove('active');
                 });
                 
-                // Add active class to clicked selector
-                this.classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(c => {
+                    c.classList.remove('active');
+                });
                 
-                // Get the tab data attribute
-                const tabId = this.getAttribute('data-tab');
+                // Add active class to clicked tab
+                tab.classList.add('active');
                 
-                if (tabId) {
-                    // Add active class to corresponding content
-                    const targetContent = document.getElementById(`${tabId}-content`);
+                // Add active class to corresponding content
+                const tabName = tab.getAttribute('data-tab');
+                if (tabName) {
+                    const targetContent = document.getElementById(`${tabName}-content`);
                     if (targetContent) {
                         targetContent.classList.add('active');
-                        console.log('Activated tab:', tabId);
                     } else {
-                        console.error(`Tab content with ID "${tabId}-content" not found`);
+                        console.warn(`Tab content with ID "${tabName}-content" not found`);
                     }
-                } else {
-                    console.error('No data-tab attribute found on clicked element');
                 }
                 
                 // Play click sound if available
@@ -125,13 +105,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     clickSound.currentTime = 0;
                     clickSound.play().catch(e => {
                         // Silently fail if autoplay is blocked
-                        console.log("Sound play prevented by browser policy");
                     });
                 }
             });
         });
-        
-        console.log('Tabs initialized successfully');
     }
     
     // Initialize tabs
