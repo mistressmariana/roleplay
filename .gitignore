@@ -1,0 +1,15 @@
+# Local test files
+index-local.html
+server.log
+start-server.sh
+
+# Downloaded/cloned files
+roleplay-main/
+roleplay.zip
+
+# OS files
+.DS_Store
+*.swp
+*.swo
+*~
+
