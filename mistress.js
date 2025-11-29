@@ -66,17 +66,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Tab switching functionality
-    const tabSelectors = document.querySelectorAll('.tab-selector');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    if (tabSelectors.length > 0 && tabContents.length > 0) {
-        tabSelectors.forEach(selector => {
+    function initTabs() {
+        const tabSelectors = document.querySelectorAll('.tab-selector');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        console.log('Initializing tabs:', tabSelectors.length, 'selectors,', tabContents.length, 'contents');
+        
+        if (tabSelectors.length === 0) {
+            console.error('No tab selectors found!');
+            return;
+        }
+        
+        if (tabContents.length === 0) {
+            console.error('No tab contents found!');
+            return;
+        }
+        
+        tabSelectors.forEach((selector, index) => {
+            // Make sure it's clickable
+            selector.style.cursor = 'pointer';
+            
             selector.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                
+                console.log('Tab clicked:', this.getAttribute('data-tab'));
                 
                 // Remove active class from all selectors and contents
-                tabSelectors.forEach(el => el.classList.remove('active'));
-                tabContents.forEach(el => el.classList.remove('active'));
+                tabSelectors.forEach(el => {
+                    el.classList.remove('active');
+                });
+                tabContents.forEach(el => {
+                    el.classList.remove('active');
+                });
                 
                 // Add active class to clicked selector
                 this.classList.add('active');
@@ -89,9 +111,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     const targetContent = document.getElementById(`${tabId}-content`);
                     if (targetContent) {
                         targetContent.classList.add('active');
+                        console.log('Activated tab:', tabId);
                     } else {
-                        console.warn(`Tab content with ID "${tabId}-content" not found`);
+                        console.error(`Tab content with ID "${tabId}-content" not found`);
                     }
+                } else {
+                    console.error('No data-tab attribute found on clicked element');
                 }
                 
                 // Play click sound if available
@@ -105,7 +130,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        
+        console.log('Tabs initialized successfully');
     }
+    
+    // Initialize tabs
+    initTabs();
     
     // Profile view counter simulation
     const viewCounter = document.querySelector('.counter-value');

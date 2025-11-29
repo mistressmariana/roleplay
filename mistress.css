@@ -517,6 +517,8 @@ a:hover {
 /* ====================== TABS CONTAINER STYLES ====================== */
 .tabs-container {
     margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .tabs-header {
@@ -546,6 +548,9 @@ a:hover {
     font-weight: bold;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
     border: 1px solid rgba(0, 255, 0, 0.2);
+    position: relative;
+    z-index: 100;
+    user-select: none;
 }
 
 .tab-selector:hover {
