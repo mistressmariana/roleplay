@@ -65,84 +65,87 @@ document.addEventListener('DOMContentLoaded', function() {
         createRainColumn();
     }
     
-    // Tab switching functionality - exactly matching working Mommy version
+    // Tab switching functionality - using event delegation for reliability
     function initTabs() {
+        // Use event delegation on the tabs container for better reliability
+        const tabsContainer = document.querySelector('.tabs-container');
+        if (!tabsContainer) {
+            console.error('Tabs container not found!');
+            return;
+        }
+        
         const tabSelectors = document.querySelectorAll('.tab-selector');
         const tabContents = document.querySelectorAll('.tab-content');
         
-        console.log('Initializing tabs - found', tabSelectors.length, 'selectors and', tabContents.length, 'contents');
+        console.log('Mistress: Initializing tabs - found', tabSelectors.length, 'selectors and', tabContents.length, 'contents');
         
-        if (tabSelectors.length === 0) {
-            console.warn('No tab selectors found');
+        if (tabSelectors.length === 0 || tabContents.length === 0) {
+            console.error('Missing tab elements!');
             return;
         }
         
-        if (tabContents.length === 0) {
-            console.warn('No tab contents found');
-            return;
-        }
-        
-        // Log all tab IDs for debugging
+        // Log all tabs
         tabSelectors.forEach((tab, i) => {
-            console.log(`Tab ${i}:`, tab.textContent.trim(), 'data-tab:', tab.getAttribute('data-tab'));
-        });
-        
-        tabSelectors.forEach(tab => {
-            // Make absolutely sure it's clickable
+            console.log(`Mistress Tab ${i}:`, tab.textContent.trim(), 'data-tab:', tab.getAttribute('data-tab'));
             tab.style.cursor = 'pointer';
             tab.style.pointerEvents = 'auto';
-            
-            tab.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const tabName = this.getAttribute('data-tab');
-                console.log('Tab clicked:', tabName, this.textContent.trim());
-                
-                // Remove active class from all tabs and contents
-                document.querySelectorAll('.tab-selector').forEach(t => {
-                    t.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.tab-content').forEach(c => {
-                    c.classList.remove('active');
-                });
-                
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                // Add active class to corresponding content
-                if (tabName) {
-                    const targetContent = document.getElementById(`${tabName}-content`);
-                    if (targetContent) {
-                        targetContent.classList.add('active');
-                        console.log('Successfully activated:', tabName);
-                    } else {
-                        console.error(`Tab content with ID "${tabName}-content" not found!`);
-                        // List all available content IDs
-                        const allContents = document.querySelectorAll('.tab-content');
-                        console.log('Available content IDs:', Array.from(allContents).map(c => c.id));
-                    }
-                } else {
-                    console.error('No data-tab attribute on clicked tab!');
-                }
-                
-                // Play click sound if available
-                const clickSound = document.getElementById('click-sound');
-                if (clickSound) {
-                    clickSound.currentTime = 0;
-                    clickSound.play().catch(e => {
-                        // Silently fail if autoplay is blocked
-                    });
-                }
-            });
         });
         
-        console.log('Tabs initialized successfully');
+        // Use event delegation on the container
+        tabsContainer.addEventListener('click', function(e) {
+            // Find the clicked tab selector
+            const clickedTab = e.target.closest('.tab-selector');
+            if (!clickedTab) return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const tabName = clickedTab.getAttribute('data-tab');
+            console.log('Mistress: Tab clicked:', tabName, clickedTab.textContent.trim());
+            
+            if (!tabName) {
+                console.error('No data-tab attribute!');
+                return;
+            }
+            
+            // Remove active class from all tabs and contents
+            document.querySelectorAll('.tab-selector').forEach(t => {
+                t.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-content').forEach(c => {
+                c.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            clickedTab.classList.add('active');
+            
+            // Add active class to corresponding content
+            const targetContent = document.getElementById(`${tabName}-content`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                console.log('Mistress: Successfully activated:', tabName);
+            } else {
+                console.error(`Mistress: Tab content with ID "${tabName}-content" not found!`);
+                const allContents = document.querySelectorAll('.tab-content');
+                console.log('Mistress: Available content IDs:', Array.from(allContents).map(c => c.id));
+            }
+            
+            // Play click sound if available
+            const clickSound = document.getElementById('click-sound');
+            if (clickSound) {
+                clickSound.currentTime = 0;
+                clickSound.play().catch(e => {
+                    // Silently fail if autoplay is blocked
+                });
+            }
+        });
+        
+        console.log('Mistress: Tabs initialized successfully');
     }
     
-    // Initialize tabs
-    initTabs();
+    // Initialize tabs last, after everything else
+    setTimeout(initTabs, 100);
     
     // Profile view counter simulation
     const viewCounter = document.querySelector('.counter-value');

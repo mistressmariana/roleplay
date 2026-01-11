@@ -172,68 +172,74 @@ function createHeartRain() {
     setInterval(createHeart, 300);
 }
 
-// Initialize tab functionality
+// Initialize tab functionality - using event delegation for reliability
 function initTabs() {
+    // Use event delegation on the tabs container for better reliability
+    const tabsContainer = document.querySelector('.tabs-container');
+    if (!tabsContainer) {
+        console.error('Mommy: Tabs container not found!');
+        return;
+    }
+    
     const tabSelectors = document.querySelectorAll('.tab-selector');
     const tabContents = document.querySelectorAll('.tab-content');
     
     console.log('Mommy: Initializing tabs - found', tabSelectors.length, 'selectors and', tabContents.length, 'contents');
     
-    if (tabSelectors.length === 0) {
-        console.warn('No tab selectors found');
+    if (tabSelectors.length === 0 || tabContents.length === 0) {
+        console.error('Mommy: Missing tab elements!');
         return;
     }
     
-    if (tabContents.length === 0) {
-        console.warn('No tab contents found');
-        return;
-    }
-    
-    // Log all tab IDs for debugging
+    // Log all tabs
     tabSelectors.forEach((tab, i) => {
         console.log(`Mommy Tab ${i}:`, tab.textContent.trim(), 'data-tab:', tab.getAttribute('data-tab'));
         tab.style.cursor = 'pointer';
         tab.style.pointerEvents = 'auto';
     });
     
-    tabSelectors.forEach(tab => {
-        tab.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const tabName = this.getAttribute('data-tab');
-            console.log('Mommy: Tab clicked:', tabName, this.textContent.trim());
-            
-            // Remove active class from all tabs and contents
-            document.querySelectorAll('.tab-selector').forEach(t => {
-                t.classList.remove('active');
-            });
-            
-            document.querySelectorAll('.tab-content').forEach(c => {
-                c.classList.remove('active');
-            });
-            
-            // Add active class to clicked tab
-            this.classList.add('active');
-            
-            // Add active class to corresponding content
-            if (tabName) {
-                const targetContent = document.getElementById(`${tabName}-content`);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                    console.log('Mommy: Successfully activated:', tabName);
-                } else {
-                    console.error(`Mommy: Tab content with ID "${tabName}-content" not found!`);
-                    const allContents = document.querySelectorAll('.tab-content');
-                    console.log('Mommy: Available content IDs:', Array.from(allContents).map(c => c.id));
-                }
-            } else {
-                console.error('Mommy: No data-tab attribute on clicked tab!');
-            }
-            
-            // Play click sound
-            playSound('click');
+    // Use event delegation on the container
+    tabsContainer.addEventListener('click', function(e) {
+        // Find the clicked tab selector
+        const clickedTab = e.target.closest('.tab-selector');
+        if (!clickedTab) return;
+        
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const tabName = clickedTab.getAttribute('data-tab');
+        console.log('Mommy: Tab clicked:', tabName, clickedTab.textContent.trim());
+        
+        if (!tabName) {
+            console.error('Mommy: No data-tab attribute!');
+            return;
+        }
+        
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.tab-selector').forEach(t => {
+            t.classList.remove('active');
         });
+        
+        document.querySelectorAll('.tab-content').forEach(c => {
+            c.classList.remove('active');
+        });
+        
+        // Add active class to clicked tab
+        clickedTab.classList.add('active');
+        
+        // Add active class to corresponding content
+        const targetContent = document.getElementById(`${tabName}-content`);
+        if (targetContent) {
+            targetContent.classList.add('active');
+            console.log('Mommy: Successfully activated:', tabName);
+        } else {
+            console.error(`Mommy: Tab content with ID "${tabName}-content" not found!`);
+            const allContents = document.querySelectorAll('.tab-content');
+            console.log('Mommy: Available content IDs:', Array.from(allContents).map(c => c.id));
+        }
+        
+        // Play click sound
+        playSound('click');
     });
     
     console.log('Mommy: Tabs initialized successfully');
