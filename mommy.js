@@ -175,14 +175,35 @@ function createHeartRain() {
 // Initialize tab functionality
 function initTabs() {
     const tabSelectors = document.querySelectorAll('.tab-selector');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    console.log('Mommy: Initializing tabs - found', tabSelectors.length, 'selectors and', tabContents.length, 'contents');
     
     if (tabSelectors.length === 0) {
         console.warn('No tab selectors found');
         return;
     }
     
+    if (tabContents.length === 0) {
+        console.warn('No tab contents found');
+        return;
+    }
+    
+    // Log all tab IDs for debugging
+    tabSelectors.forEach((tab, i) => {
+        console.log(`Mommy Tab ${i}:`, tab.textContent.trim(), 'data-tab:', tab.getAttribute('data-tab'));
+        tab.style.cursor = 'pointer';
+        tab.style.pointerEvents = 'auto';
+    });
+    
     tabSelectors.forEach(tab => {
-        tab.addEventListener('click', () => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const tabName = this.getAttribute('data-tab');
+            console.log('Mommy: Tab clicked:', tabName, this.textContent.trim());
+            
             // Remove active class from all tabs and contents
             document.querySelectorAll('.tab-selector').forEach(t => {
                 t.classList.remove('active');
@@ -193,23 +214,29 @@ function initTabs() {
             });
             
             // Add active class to clicked tab
-            tab.classList.add('active');
+            this.classList.add('active');
             
             // Add active class to corresponding content
-            const tabName = tab.getAttribute('data-tab');
             if (tabName) {
                 const targetContent = document.getElementById(`${tabName}-content`);
                 if (targetContent) {
                     targetContent.classList.add('active');
+                    console.log('Mommy: Successfully activated:', tabName);
                 } else {
-                    console.warn(`Tab content with ID "${tabName}-content" not found`);
+                    console.error(`Mommy: Tab content with ID "${tabName}-content" not found!`);
+                    const allContents = document.querySelectorAll('.tab-content');
+                    console.log('Mommy: Available content IDs:', Array.from(allContents).map(c => c.id));
                 }
+            } else {
+                console.error('Mommy: No data-tab attribute on clicked tab!');
             }
             
             // Play click sound
             playSound('click');
         });
     });
+    
+    console.log('Mommy: Tabs initialized successfully');
 }
 
 // Initialize scene idea dropdowns
