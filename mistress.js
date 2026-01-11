@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         createRainColumn();
     }
     
-    // Tab switching functionality - simplified to match working Mommy version
+    // Tab switching functionality - exactly matching working Mommy version
     function initTabs() {
         const tabSelectors = document.querySelectorAll('.tab-selector');
         
