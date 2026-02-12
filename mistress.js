@@ -97,8 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const clickedTab = e.target.closest('.tab-selector');
             if (!clickedTab) return;
             
-            e.preventDefault();
-            e.stopPropagation();
+            // Do not preventDefault so <label> can check the radio (CSS tabs work)
             
             const tabName = clickedTab.getAttribute('data-tab');
             console.log('Mistress: Tab clicked:', tabName, clickedTab.textContent.trim());

@@ -561,14 +561,19 @@ a:hover {
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
 }
 
-.tab-selector.active {
-    background-color: rgba(0, 80, 0, 0.5);
-    color: #00ff00;
-    border: 1px solid rgba(0, 255, 0, 0.5);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+/* .tab-selector.active now controlled by :checked ~ .tab-selectors label[for="..."] above */
+
+/* Hidden radios for CSS-only tab switching */
+.tab-radio {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
 }
 
-/* Tab content styling */
+/* Tab content: hide by default, show when corresponding radio is checked */
 .tab-content {
     display: none;
     background-color: rgba(0, 20, 0, 0.4);
@@ -581,10 +586,24 @@ a:hover {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.tab-content.active {
+#tab-stats:checked ~ .stats-content,
+#tab-profile:checked ~ .profile-content,
+#tab-scene:checked ~ .scene-content,
+#tab-gallery:checked ~ .gallery-content {
     display: block;
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Active tab label styling (CSS-only) */
+#tab-stats:checked ~ .tab-selectors label[for="tab-stats"],
+#tab-profile:checked ~ .tab-selectors label[for="tab-profile"],
+#tab-scene:checked ~ .tab-selectors label[for="tab-scene"],
+#tab-gallery:checked ~ .tab-selectors label[for="tab-gallery"] {
+    background-color: rgba(0, 80, 0, 0.5);
+    color: #00ff00;
+    border: 1px solid rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
 }
 
 /* Profile text styling */
