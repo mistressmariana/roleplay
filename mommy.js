@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize tab functionality
     initTabs();
     
-    // Initialize scene idea dropdowns
-    initSceneDropdowns();
+    // Scene dropdowns use native <details>/<summary> - no JS needed
     
     // Initialize counter
     initCounter();

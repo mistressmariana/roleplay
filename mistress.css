@@ -630,7 +630,7 @@ a:hover {
     left: 10px;
 }
 
-/* Scene ideas styling */
+/* Scene ideas styling (details/summary for native dropdown) */
 .scene-idea {
     margin-bottom: 15px;
     background-color: rgba(0, 30, 0, 0.4);
@@ -639,7 +639,8 @@ a:hover {
     border: 1px solid rgba(0, 255, 0, 0.2);
 }
 
-.scene-title {
+.scene-idea summary.scene-title {
+    list-style: none;
     padding: 12px 15px;
     color: #00ff00;
     font-weight: bold;
@@ -650,18 +651,27 @@ a:hover {
     background-color: rgba(0, 40, 0, 0.5);
 }
 
-.scene-description {
-    padding: 0 15px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+.scene-idea summary::-webkit-details-marker,
+.scene-idea summary::marker {
+    display: none;
+}
+
+.scene-idea .scene-description {
+    padding: 12px 15px 15px;
+    max-height: none;
+    overflow: visible;
     color: #aaaaaa;
     line-height: 1.5;
 }
 
-.dropdown-arrow {
+.scene-idea .dropdown-arrow {
     font-size: 0.8em;
     color: #00ff00;
+    transition: transform 0.25s ease;
+}
+
+.scene-idea[open] .dropdown-arrow {
+    transform: rotate(180deg);
 }
 
 /* ====================== GALLERY TAB STYLES ====================== */

@@ -171,34 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
     
-    // Scene idea expand/collapse functionality
-    const sceneTitles = document.querySelectorAll('.scene-title');
-    sceneTitles.forEach(title => {
-        title.style.cursor = 'pointer';
-        const description = title.nextElementSibling;
-        
-        // Initialize all descriptions as collapsed
-        if (description && description.classList.contains('scene-description')) {
-            description.style.maxHeight = '0px';
-        }
-        
-        title.addEventListener('click', function() {
-            const arrow = this.querySelector('.dropdown-arrow');
-            
-            if (description && description.classList.contains('scene-description')) {
-                const currentHeight = description.style.maxHeight;
-                if (currentHeight && currentHeight !== '0px' && currentHeight !== '') {
-                    // Collapse
-                    description.style.maxHeight = '0px';
-                    if (arrow) arrow.innerHTML = '▼';
-                } else {
-                    // Expand
-                    description.style.maxHeight = description.scrollHeight + 'px';
-                    if (arrow) arrow.innerHTML = '▲';
-                }
-            }
-        });
-    });
+    // Scene dropdowns use native <details>/<summary> - no JS needed
     
     // Add animation classes on scroll
     function handleScroll() {
